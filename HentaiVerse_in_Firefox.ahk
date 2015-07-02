@@ -418,13 +418,18 @@ grindElementalProf()
     global encounter
     global boss
     global mob
-    if ((0 != boss) and not mob) or encounter {
+    if (0 != boss) or encounter {
         debuff()
         castCure()
     }
 
+    channeling := channeling()
+    if (channeling) {
+        if rebuff()
+            return
+    }
     casted := false
-    if (0 != boss or encounter or channeling()) {
+    if (0 != boss or encounter or channeling) {
         x := X_ + 175 + 14*37
         y := Y_ + 89
         PixelGetColor, color, x, y    ; 15th spell icon on the quickbar
@@ -476,7 +481,7 @@ rebuff()
             SendInput, !1
             wait()
             if not encounter
-                return
+                return true
             castCure()
         }
 
@@ -485,7 +490,7 @@ rebuff()
             SendInput, !2
             wait()
             if not encounter
-                return
+                return true
             castCure()
         }
 
@@ -496,7 +501,7 @@ rebuff()
                 SendInput, !3
                 wait()
                 if not encounter
-                    return
+                    return true
                 castCure()
             }
         }
@@ -506,7 +511,7 @@ rebuff()
             SendInput, !4
             wait()
             if not encounter
-                return
+                return true
             castCure()
         }
 
@@ -516,7 +521,7 @@ rebuff()
                 SendInput, !5
                 wait()
                 if not encounter
-                    return
+                    return true
                 castCure()
             }
         }
@@ -556,11 +561,11 @@ rebuff()
                 ControlClick, x%x% y%y%, A,,,, NA
                 Click
                 wait()
-                return
+                return true
             }
         }
     }
-    return
+    return false
 }
 
 ; debuff boss or mob, for mob, only when in encounter mode
@@ -671,7 +676,7 @@ flow(option)
     else {
         PixelGetColor, color, X_ + 23, Y_ + 189    ; mp gauge almost zero
         if (0x000000 = color)
-            normalAttack(3)
+            normalAttack(1)
     }
 
     ;toggleSpirit()

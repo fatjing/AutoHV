@@ -167,8 +167,10 @@ castCure()
 ; check mp gauge color and use mana potion on low mp
 useManaPot()
 {
+    global mob
+    global encounter
     global itemAvailable
-    PixelGetColor, color, X_ + 27, Y_ + 189    ; mp gauge 8%
+    PixelGetColor, color, X_ + 99, Y_ + 189    ; mp gauge 70%
     if (0x000000 = color) {
         x1 := X_ + 165
         y1 := Y_ + 11
@@ -182,35 +184,17 @@ useManaPot()
 
             x := X_ + 198
             y := Y_ + 229
-            ; get the first unused item
-            PixelGetColor, color1, x, y    ; first item
-            while (0x8A8A8A = color1) {
-                y += 23
-                PixelGetColor, color1, x, y
-            }
-            ; check if item stock is empty
-            if (0xDFEBED = color1) {
-                itemAvailable := false
-                return false
-            }
-            else {
-                ControlClick, x%x% y%y%, A,,,, NA
-                Click
-                wait()
-                return true
-            }
+
+            ControlClick, x%x% y%y%, A,,,, NA
+            Click
+            wait()
+            return true
         }
-        else {
-            Loop, 2 {
-                SendInput, d
-                wait()
-            }
-            return false
-        }
+        if (not mob and not encounter)
+            normalAttack(1)
     }
-    else {
-        return false
-    }
+
+    return false
 }
 
 ; use powerup gem
@@ -670,14 +654,7 @@ flow(option)
     useGem()
     castCure()
 
-    if (itemAvailable) {
-        useManaPot()
-    }
-    else {
-        PixelGetColor, color, X_ + 23, Y_ + 189    ; mp gauge almost zero
-        if (0x000000 = color)
-            normalAttack(1)
-    }
+    useManaPot()
 
     ;toggleSpirit()
 }

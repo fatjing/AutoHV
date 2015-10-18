@@ -1,3 +1,3 @@
-﻿Hentaiverse attribute: calculate attribute points when upgrading
+﻿AutoHV.ahk: automated tool for the web game HV
 
-HentaiVerse in Firefox: automated tool
+attribute.ahk: calculate attribute points to be distributed when leveling up

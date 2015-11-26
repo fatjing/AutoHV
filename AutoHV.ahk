@@ -181,7 +181,7 @@ recoverHP()
 }
 
 ; check mp gauge color and use mana potion on low mp
-useManaPot()
+replenishMP()
 {
     global mob
     global encounter
@@ -669,8 +669,7 @@ flow(option)
 
     useGem()
     recoverHP()
-
-    useManaPot()
+    replenishMP()
 
     ;toggleSpirit()
 }

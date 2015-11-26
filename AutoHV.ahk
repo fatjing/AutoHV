@@ -135,8 +135,8 @@ enterArena()
     return
 }
 
-; check hp gauge color and cast cure spell on low hp
-castCure()
+; check hp gauge color for low hp and recover it by casting cure spell or using health potion
+recoverHP()
 {
     PixelGetColor, color, X_ + 87, Y_ + 149    ; hp gauge 60%
     if (0x000000 = color) {
@@ -367,7 +367,7 @@ grindDeprecatingProf()
 {
     offensiveSpell(0, 1)
     offensiveSpell(9, 1)
-    ;castCure()
+    ;recoverHP()
     ;offensiveSpell(0, 1)
     ;offensiveSpell(8, 1)
     return
@@ -397,14 +397,14 @@ grindWeaponProf()
 grindElementalProf()
 {
     rebuff()
-    castCure()
+    recoverHP()
 
     global encounter
     global boss
     global mob
     if (0 != boss) or encounter {
         debuff()
-        castCure()
+        recoverHP()
     }
 
     channeling := channeling()
@@ -466,7 +466,7 @@ rebuff()
             wait()
             if not encounter
                 return true
-            castCure()
+            recoverHP()
         }
 
         ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\protection.png
@@ -475,7 +475,7 @@ rebuff()
             wait()
             if not encounter
                 return true
-            castCure()
+            recoverHP()
         }
 
         PixelGetColor, color, X_ + 75, Y_ + 229    ; spirit gauge exact mid-point
@@ -486,7 +486,7 @@ rebuff()
                 wait()
                 if not encounter
                     return true
-                castCure()
+                recoverHP()
             }
         }
 
@@ -496,7 +496,7 @@ rebuff()
             wait()
             if not encounter
                 return true
-            castCure()
+            recoverHP()
         }
 
         if (channeling or encounter) {
@@ -506,7 +506,7 @@ rebuff()
                 wait()
                 if not encounter
                     return true
-                castCure()
+                recoverHP()
             }
         }
 
@@ -520,7 +520,7 @@ rebuff()
                     ControlClick, x%x% y%y%, A,,,, NA
                     Click
                     wait()
-                    ;castCure()
+                    ;recoverHP()
                 }
             }
 
@@ -652,7 +652,7 @@ flow(option)
         grindDeprecatingProf()
 
     useGem()
-    castCure()
+    recoverHP()
 
     useManaPot()
 

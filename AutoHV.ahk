@@ -138,6 +138,9 @@ enterArena()
 ; use n-th item
 useItem(n)
 {
+    SendInput, e
+    Sleep, 500
+
     x := X_ + 198
     y := Y_ + 229 + 23*(n-1)
     PixelGetColor, color, x, y
@@ -165,14 +168,19 @@ recoverHP()
             return true
         }
         else {
-            x := X_ + 175 + 12*37
-            y := Y_ + 89
-            PixelGetColor, color, x, y    ; 13th spell icon on the quickbar
-            if (0x15282C = color) {    ; check cool down for Full-Cure
-                ControlClick, x%x% y%y%, A,,,, NA
-                Click
-                wait()
+            if useItem(4) {    ; use health potion
                 return true
+            }
+            else {
+                x := X_ + 175 + 12*37
+                y := Y_ + 89
+                PixelGetColor, color, x, y    ; 13th spell icon on the quickbar
+                if (0x15282C = color) {    ; check cool down for Full-Cure
+                    ControlClick, x%x% y%y%, A,,,, NA
+                    Click
+                    wait()
+                    return true
+                }
             }
         }
     }

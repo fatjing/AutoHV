@@ -457,17 +457,29 @@ grindElementalProf()
 ; add buffs
 rebuff()
 {
+    global arena
     global encounter
     channeling := channeling()
-    PixelGetColor, color, X_ + 340, Y_ + 19    ; 6th icon of the status effect bar
+    PixelGetColor, color, X_ + 370, Y_ + 19    ; 7th icon of the status effect bar
     if (0xDFEBED = color or channeling) {
         x1 := X_ + 165
         y1 := Y_ + 11
-        x2 := x1 + 8*(30 + 3) - 4
+        x2 := x1 + 9*(30 + 3) - 4
         y2 := y1 + 32 - 1
 
         if channeling
-            x2 := x1 + 9*(30 + 3) - 4
+            x2 := x1 + 10*(30 + 3) - 4
+
+        if arena {
+            ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\manapot.png
+            if (0 != ErrorLevel) {
+                useItem(1)    ; use mana draught
+            }
+            ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\healthpot.png
+            if (0 != ErrorLevel) {
+                useItem(3)    ; use health draught
+            }
+        }
 
         ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\haste.png
         if (0 != ErrorLevel) {

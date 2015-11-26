@@ -135,6 +135,22 @@ enterArena()
     return
 }
 
+; use n-th item
+useItem(n)
+{
+    x := X_ + 198
+    y := Y_ + 229 + 23*(n-1)
+    PixelGetColor, color, x, y
+    if (0x8A8A8A != color) {    ; item is available
+        ControlClick, x%x% y%y%, A,,,, NA
+        Click
+        wait()
+        return true
+    }
+    else
+        return false
+}
+
 ; check hp gauge color for low hp and recover it by casting cure spell or using health potion
 recoverHP()
 {

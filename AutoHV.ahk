@@ -71,7 +71,6 @@ wait()
 enterArena()
 {
     global running
-    global itemAvailable
     global arena
     static page2 := true
 
@@ -93,7 +92,6 @@ enterArena()
     y := Y_ + 340
     ControlClick, x%x% y%y%, A,,,, NA
     FFwait()
-    itemAvailable := true
 
     if page2 {
         x := X_ + 770
@@ -193,7 +191,6 @@ replenishMP()
 {
     global mob
     global encounter
-    global itemAvailable
     PixelGetColor, color, X_ + 99, Y_ + 189    ; mp gauge 70%
     if (0x000000 = color) {
         if useItem(2)    ; use mana potion
@@ -662,7 +659,6 @@ debuff()
 
 flow(option)
 {
-    global itemAvailable
     if (option = 1)
         grindElementalProf()
     else if (option = 2)
@@ -740,7 +736,7 @@ main:
             encounter := false
         }
     }
-    itemAvailable := true
+
     mob := true
     boss := 0
     arrayBoss := [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]

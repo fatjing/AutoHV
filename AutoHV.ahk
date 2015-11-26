@@ -142,7 +142,7 @@ useItem(n)
     x := X_ + 198
     y := Y_ + 229 + 23*(n-1)
     PixelGetColor, color, x, y
-    if (0x5C0D11 = color) {    ; item is available
+    if (0x110D5C = color) {    ; item is available
         ControlClick, x%x% y%y%, A,,,, NA
         Click
         wait()

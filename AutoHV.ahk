@@ -155,7 +155,7 @@ useItem(n)
 ; check hp gauge color for low hp and recover it by casting cure spell or using health potion
 recoverHP()
 {
-    PixelGetColor, color, X_ + 87, Y_ + 149    ; hp gauge 60%
+    PixelGetColor, color, X_ + 18 + 69, Y_ + 147    ; hp gauge 60%, 114*0.6=68.4
     if (0x000000 = color) {
         x := X_ + 175 + 5*37
         y := Y_ + 89
@@ -191,7 +191,7 @@ replenishMP()
 {
     global mob
     global encounter
-    PixelGetColor, color, X_ + 99, Y_ + 189    ; mp gauge 70%
+    PixelGetColor, color, X_ + 18 + 23, Y_ + 147 + 41    ; mp gauge 20%, 114*0.2=22.8
     if (0x000000 = color) {
         if useItem(2)    ; use mana potion
             return true
@@ -225,8 +225,8 @@ useGem()
 ; trigger spirit stance
 toggleSpirit()
 {
-    PixelGetColor, color, X_ + 105, Y_ + 229    ; spirit gauge 75%
-    PixelGetColor, color1, X_ + 132, Y_ + 269    ; overcharge gauge 100%
+    PixelGetColor, color, X_ + 18 + 86, Y_ + 147 + 41*2    ; spirit gauge 75%, 114*0.75=85.5
+    PixelGetColor, color1, X_ + 18 + 114, Y_ + 147 + 41*3    ; overcharge gauge 100%
     if (0x000000 != color1 and 0x000000 != color) {
         SendInput, s
         wait()
@@ -496,7 +496,7 @@ rebuff()
             recoverHP()
         }
 
-        PixelGetColor, color, X_ + 75, Y_ + 229    ; spirit gauge exact mid-point
+        PixelGetColor, color, X_ + 18 + 57, Y_ + 147 + 41*2    ; spirit gauge 50%, 114*0.5=57
         if (0x000000 != color) {
             ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\sparklife.png
             if (0 != ErrorLevel) {

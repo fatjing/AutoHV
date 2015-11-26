@@ -196,24 +196,9 @@ replenishMP()
     global itemAvailable
     PixelGetColor, color, X_ + 99, Y_ + 189    ; mp gauge 70%
     if (0x000000 = color) {
-        x1 := X_ + 165
-        y1 := Y_ + 11
-        x2 := x1 + 7*(30 + 3) - 4
-        y2 := y1 + 32 - 1
-
-        ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\manapot.png
-        if (0 != ErrorLevel) {
-            SendInput, e
-            Sleep, 500
-
-            x := X_ + 198
-            y := Y_ + 229
-
-            ControlClick, x%x% y%y%, A,,,, NA
-            Click
-            wait()
+        if useItem(2)    ; use mana potion
             return true
-        }
+
         if (not mob and not encounter)
             normalAttack(1)
     }

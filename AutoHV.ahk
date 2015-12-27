@@ -359,7 +359,7 @@ channeling()
 {
     x1 := X_ + 165
     y1 := Y_ + 11
-    x2 := x1 + 3*(30 + 3) - 4
+    x2 := x1 + 7*(30 + 3) - 4
     y2 := y1 + 32 - 1
     ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\channeling.png
     if (0 = ErrorLevel)

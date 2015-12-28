@@ -155,7 +155,7 @@ useItem(n)
 ; check hp gauge color for low hp and recover it by casting cure spell or using health potion
 recoverHP()
 {
-    PixelGetColor, color, X_ + 18 + 69, Y_ + 147    ; hp gauge 60%, 114*0.6=68.4
+    PixelGetColor, color, X_ + 18 + 63, Y_ + 147    ; hp gauge 55%, 114*0.55=62.7
     if (0x000000 = color) {
         x := X_ + 175 + 5*37
         y := Y_ + 89

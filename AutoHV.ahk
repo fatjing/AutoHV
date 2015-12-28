@@ -166,19 +166,17 @@ recoverHP()
             return true
         }
         else {
-            if useItem(4) {    ; use health potion
+            x := X_ + 175 + 12*37
+            y := Y_ + 89
+            PixelGetColor, color, x, y    ; 13th spell icon on the quickbar
+            if (0x15282C = color) {    ; check cool down for Full-Cure
+                ControlClick, x%x% y%y%, A,,,, NA
+                Click
+                wait()
                 return true
             }
             else {
-                x := X_ + 175 + 12*37
-                y := Y_ + 89
-                PixelGetColor, color, x, y    ; 13th spell icon on the quickbar
-                if (0x15282C = color) {    ; check cool down for Full-Cure
-                    ControlClick, x%x% y%y%, A,,,, NA
-                    Click
-                    wait()
-                    return true
-                }
+                return useItem(4)    ; use health potion
             }
         }
     }

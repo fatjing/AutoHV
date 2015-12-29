@@ -416,7 +416,7 @@ grindElementalProf()
         if rebuff()
             return
     }
-    casted := false
+
     if (0 != boss or encounter or channeling) {
         x := X_ + 175 + 14*37
         y := Y_ + 89
@@ -426,24 +426,23 @@ grindElementalProf()
             ControlClick, x%x% y%y%, A,,,, NA
             SendInput, %foo%
             Click
-            casted := true
             wait()
+            return
         }
     }
-    if not casted {
-        x := X_ + 175 + 15*37
-        y := Y_ + 89
-        PixelGetColor, color, x, y    ; 16th spell icon on the quickbar
-        if (0xD8C8C8 = color) {    ; check cool down for Chained Lightning
-            foo := getTargetMonster(4)
-            ControlClick, x%x% y%y%, A,,,, NA
-            SendInput, %foo%
-            Click
-            wait()
-        }
-        else {
-            offensiveSpell(7, 3)
-        }
+
+    x := X_ + 175 + 15*37
+    y := Y_ + 89
+    PixelGetColor, color, x, y    ; 16th spell icon on the quickbar
+    if (0xD8C8C8 = color) {    ; check cool down for Chained Lightning
+        foo := getTargetMonster(4)
+        ControlClick, x%x% y%y%, A,,,, NA
+        SendInput, %foo%
+        Click
+        wait()
+    }
+    else {
+        offensiveSpell(7, 3)
     }
 
     return

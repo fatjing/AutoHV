@@ -585,7 +585,7 @@ debuff()
     loop, %count%
     {
         if encounter
-            foo := getTargetMonster((A_Index-1)*3 + 2)
+            foo := getTargetMonster(3*(4-A_Index) + 2)
         else
             foo := arrayBoss[A_index]
 

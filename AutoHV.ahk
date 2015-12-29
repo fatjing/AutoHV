@@ -89,7 +89,7 @@ enterArena()
     ControlClick, x%x% y%y%, A,,,, NA
     Sleep, 500
     x := X_ + 70
-    y := Y_ + 340
+    y := Y_ + 390    ; Recover All
     ControlClick, x%x% y%y%, A,,,, NA
     FFwait()
 

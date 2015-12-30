@@ -48,6 +48,7 @@ wait()
         FFWait()
     }
     else {    ; riddle master
+        Sleep, 2000
         x := X_ + 653
         y := Y_ + 34
         ControlClick, x%x% y%y%, A,,,, NA

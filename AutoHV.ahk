@@ -177,7 +177,7 @@ recoverHP()
                 return true
             }
             else {
-                return useItem(4)    ; use health potion
+                return useItem(2)    ; use health potion
             }
         }
     }
@@ -192,7 +192,7 @@ replenishMP()
     global encounter
     PixelGetColor, color, X_ + 18 + 23, Y_ + 147 + 41    ; mp gauge 20%, 114*0.2=22.8
     if (0x000000 = color) {
-        if useItem(2)    ; use mana potion
+        if useItem(4)    ; use mana potion
             return true
 
         if (not mob and not encounter)
@@ -468,11 +468,11 @@ rebuff()
         if arena {
             ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\manapot.png
             if (0 != ErrorLevel) {
-                useItem(1)    ; use mana draught
+                useItem(3)    ; use mana draught
             }
             ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\healthpot.png
             if (0 != ErrorLevel) {
-                useItem(3)    ; use health draught
+                useItem(1)    ; use health draught
             }
         }
 

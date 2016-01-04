@@ -620,9 +620,9 @@ debuff()
                 return
 
             if not encounter {
-                ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\weaken.png
+                ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\imperil.png
                 if (0 != ErrorLevel) {
-                    SendInput, !0
+                    SendInput, !9
                     if (10 = foo)
                         foo := 0
                     SendInput, %foo%
@@ -630,9 +630,9 @@ debuff()
                     return
                 }
 
-                ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\imperil.png
+                ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\weaken.png
                 if (0 != ErrorLevel) {
-                    SendInput, !9
+                    SendInput, !0
                     if (10 = foo)
                         foo := 0
                     SendInput, %foo%

@@ -7,11 +7,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;#Include %A_ScriptDir%\UIA_Interface
 #Include FFWait.ahk
 
-; set up the coordinate of the top-left corner of the .stuffbox <div>
+; set up the coordinates of the top-left corner of the .stuffbox <div>
 global X_
 global Y_
-X_ := 7
-Y_ := 101
+IniRead, X_, AutoHV.ini, TopLeftCoordinates, x
+IniRead, Y_, AutoHV.ini, TopLeftCoordinates, y
 
 wait()
 {

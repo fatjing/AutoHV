@@ -7,12 +7,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;#Include %A_ScriptDir%\UIA_Interface
 #Include FFWait.ahk
 
-; set up the coordinates of the top-left corner of the .stuffbox <div>
-global X_
-global Y_
-IniRead, X_, AutoHV.ini, TopLeftCoordinates, x
-IniRead, Y_, AutoHV.ini, TopLeftCoordinates, y
-
 wait()
 {
     FFWait()
@@ -706,6 +700,21 @@ main:
     }
     running := true
 
+    ; set up the coordinates of the top-left corner of the .stuffbox <div>
+    global X_ := 1
+    global Y_ := 1
+    Loop, 600 {
+        PixelGetColor, color, ++X_, 400
+        if (0x120D5C = color)
+            break
+    }
+    Loop, 400 {
+        PixelGetColor, color, X_, ++Y_
+        if (0x120D5C = color)
+            break
+    }
+
+    ; check battle mode
     SendInput, !d
     Sleep, 500
     SendInput, ^c

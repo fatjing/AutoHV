@@ -246,8 +246,7 @@ getTargetMonster(n)
     number := 0
     iterMob := -1
     iterBoss := -1
-    Loop
-    {
+    Loop {
         PixelGetColor, color, X_ + 893, Y_ + 71 + (foo-1)*58    ; monster hp gauge
         if (0x9DA5A6 != color) {    ; monster's hp is not of dead color
             if (0xDFEBED = color) {    ; out of range
@@ -265,8 +264,7 @@ getTargetMonster(n)
             }
             else {
                 if (0 != boss) {
-                    loop %boss%
-                    {
+                    Loop %boss% {
                         temp := foo
                         if (10 = temp)
                             temp := 0
@@ -300,11 +298,10 @@ getBoss()
     foo := 1
     bar := 1
     boss := 0
-    loop % arrayBoss.MaxIndex()
+    Loop % arrayBoss.MaxIndex()
         arrayBoss[A_Index] := -1
 
-    Loop
-    {
+    Loop {
         PixelGetColor, color, X_ + 893, Y_ + 71 + (foo-1)*58    ; monster hp gauge
         if (0x9DA5A6 != color) {    ; monster's hp is not of dead color
             if (0xDFEBED = color) {    ; out of range
@@ -324,8 +321,7 @@ getBoss()
         ++foo
     }
 
-    loop % arrayBoss.MaxIndex()
-    {
+    Loop % arrayBoss.MaxIndex() {
         if (-1 != arrayBoss[A_Index]) {
             ++boss
         }
@@ -583,8 +579,7 @@ debuff()
         count := boss
     }
 
-    loop, %count%
-    {
+    Loop, %count% {
         if encounter
             foo := getTargetMonster((4-A_Index) * 3)
         else
@@ -740,8 +735,7 @@ main:
     arrayBoss := [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     getBoss()
 
-    Loop
-    {
+    Loop {
         if not running
             break
 

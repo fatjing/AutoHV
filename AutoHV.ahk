@@ -255,7 +255,7 @@ getTargetMonster(n)
             else {
                 if (0 != boss) {
                     Loop %boss% {
-                        if ((10 = foo ? 0 : foo) = arrayBoss[A_Index]) {
+                        if (foo = arrayBoss[A_Index]) {
                             boss_iterator := foo
                             break
                         }
@@ -294,7 +294,7 @@ getBoss()
             else {
                 PixelGetColor, color, X_ + 848, Y_ + 71 + (foo-1)*58    ; monster number region
                 if (0xDFEBED != color) {
-                    arrayBoss[bar] := (10 = foo) ? 0 : foo
+                    arrayBoss[bar] := foo
                     ++bar
                 }
             }
@@ -566,8 +566,6 @@ debuff()
         else
             foo := arrayBoss[A_index]
 
-        if (0 = foo)
-            foo := 10
         x := X_ + 1150
         y := Y_ + 80 + (foo-1)*58
         PixelGetColor, color, x, y    ; 5th status effect icon of target monster

@@ -243,26 +243,19 @@ getTargetMonster(n)
     Loop {
         PixelGetColor, color, X_ + 893, Y_ + 71 + (foo-1)*58    ; monster hp gauge
         if (0x9DA5A6 != color) {    ; monster's hp is not of dead color
-            if (0xDFEBED = color) {    ; out of range
+            if (0xDFEBED = color) {    ; out of range, end loop
                 if (-1 = mob_iterator) {
                     mob := false
-                    if (10 = boss_iterator)
-                        return 0
-                    return boss_iterator
+                    return 10 = boss_iterator ? 0 : boss_iterator
                 }
                 else {
-                    if (10 = mob_iterator)
-                        return 0
-                    return mob_iterator
+                    return 10 = mob_iterator ? 0 : mob_iterator
                 }
             }
             else {
                 if (0 != boss) {
                     Loop %boss% {
-                        temp := foo
-                        if (10 = temp)
-                            temp := 0
-                        if (temp = arrayBoss[A_Index]) {
+                        if ((10 = foo ? 0 : foo) = arrayBoss[A_Index]) {
                             boss_iterator := foo
                             break
                         }
@@ -272,11 +265,8 @@ getTargetMonster(n)
                     ++number
                     if (number < n)
                         mob_iterator := foo
-                    else {
-                        if (10 = foo)
-                            return 0
-                        return foo
-                    }
+                    else
+                        return 10 = foo ? 0 : foo
                 }
             }
         }
@@ -304,10 +294,7 @@ getBoss()
             else {
                 PixelGetColor, color, X_ + 848, Y_ + 71 + (foo-1)*58    ; monster number region
                 if (0xDFEBED != color) {
-                    temp := foo
-                    if (10 = temp)
-                        temp := 0
-                    arrayBoss[bar] := temp
+                    arrayBoss[bar] := (10 = foo) ? 0 : foo
                     ++bar
                 }
             }

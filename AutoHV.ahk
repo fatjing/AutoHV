@@ -230,7 +230,7 @@ toggleSpirit()
     }
 }
 
-; check hp gauge color and get the n-th non-boss (if possible) live monster
+; get the n-th non-boss (if possible) live monster or first monster with coalesced mana effect
 getTargetMonster(n)
 {
     global boss
@@ -262,6 +262,15 @@ getTargetMonster(n)
                     }
                 }
                 if (boss_iterator != foo) {
+                    ; check coalesced mana effect
+                    x1 := X_ + 1006
+                    y1 := Y_ + 67 + (foo-1)*58
+                    x2 := x1 + 5*(30 + 3) - 4
+                    y2 := y1 + 32 - 1
+                    ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\coalescemana.png
+                    if (0 = ErrorLevel)
+                        return 10 = foo ? 0 : foo
+
                     ++number
                     if (number < n)
                         mob_iterator := foo

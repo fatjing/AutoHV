@@ -240,6 +240,10 @@ getTargetMonster(n)
     number := 0
     mob_iterator := -1
     boss_iterator := -1
+    x1 := X_ + 1006
+    ; y1 := Y_ + 67 + (foo-1)*58
+    x2 := x1 + 5*(30 + 3) - 4
+    y2 := y1 + 32 - 1
     Loop {
         PixelGetColor, color, X_ + 893, Y_ + 71 + (foo-1)*58    ; monster hp gauge
         if (0x9DA5A6 != color) {    ; monster's hp is not of dead color
@@ -263,10 +267,7 @@ getTargetMonster(n)
                 }
                 if (boss_iterator != foo) {
                     ; check coalesced mana effect
-                    x1 := X_ + 1006
                     y1 := Y_ + 67 + (foo-1)*58
-                    x2 := x1 + 5*(30 + 3) - 4
-                    y2 := y1 + 32 - 1
                     ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\coalescemana.png
                     if (0 = ErrorLevel)
                         return 10 = foo ? 0 : foo

@@ -238,22 +238,22 @@ getTargetMonster(n)
     global mob
     foo := 1
     number := 0
-    iterMob := -1
-    iterBoss := -1
+    mob_iterator := -1
+    boss_iterator := -1
     Loop {
         PixelGetColor, color, X_ + 893, Y_ + 71 + (foo-1)*58    ; monster hp gauge
         if (0x9DA5A6 != color) {    ; monster's hp is not of dead color
             if (0xDFEBED = color) {    ; out of range
-                if (-1 = iterMob) {
+                if (-1 = mob_iterator) {
                     mob := false
-                    if (10 = iterBoss)
+                    if (10 = boss_iterator)
                         return 0
-                    return iterBoss
+                    return boss_iterator
                 }
                 else {
-                    if (10 = iterMob)
+                    if (10 = mob_iterator)
                         return 0
-                    return iterMob
+                    return mob_iterator
                 }
             }
             else {
@@ -263,15 +263,15 @@ getTargetMonster(n)
                         if (10 = temp)
                             temp := 0
                         if (temp = arrayBoss[A_Index]) {
-                            iterBoss := foo
+                            boss_iterator := foo
                             break
                         }
                     }
                 }
-                if (iterBoss != foo) {
+                if (boss_iterator != foo) {
                     ++number
                     if (number < n)
-                        iterMob := foo
+                        mob_iterator := foo
                     else {
                         if (10 = foo)
                             return 0

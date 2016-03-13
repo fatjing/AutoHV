@@ -524,18 +524,6 @@ rebuff()
                     ;recoverHP()
                 }
             }
-
-            ;ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\spiritshield.png
-            ;if (0 != ErrorLevel) {
-                ;SendInput, w
-                ;SendInput, w
-                ;Sleep, 100
-                ;x := X_ + 670
-                ;y := Y_ + 530
-                ;ControlClick, x%x% y%y%, A,,,, NA
-                ;Click
-                ;wait()
-            ;}
         }
 
         if (channeling) {

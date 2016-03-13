@@ -438,7 +438,6 @@ grindElementalProf()
 ; add buffs
 rebuff()
 {
-    global arena
     global encounter
     channeling := channeling()
     PixelGetColor, color, X_ + 370, Y_ + 19    ; 7th icon of the status effect bar
@@ -451,7 +450,7 @@ rebuff()
         if channeling
             x2 := x1 + 10*(30 + 3) - 4
 
-        if arena {
+        if not encounter {
             ImageSearch, , , x1, y1, x2, y2, *w30 *h32 %A_ScriptDir%\HentaiVerse_Image\manapot.png
             if (0 != ErrorLevel) {
                 useItem(3)    ; use mana draught

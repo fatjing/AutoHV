@@ -681,7 +681,9 @@ main:
     }
     running := true
 
+    WinActivate, ahk_class MozillaWindowClass
     ; set up the coordinates of the top-left corner of the .stuffbox <div>
+    ; mine is 7, 101
     global X_ := 1
     global Y_ := 1
     Loop, 600 {
@@ -694,6 +696,7 @@ main:
         if (0x120D5C = color)
             break
     }
+    MouseMove, X_ + 740, Y_ + 600
 
     ; check battle mode
     SendInput, !d

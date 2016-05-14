@@ -683,7 +683,7 @@ main:
 
     WinActivate, ahk_class MozillaWindowClass
     ; set up the coordinates of the top-left corner of the .stuffbox <div>
-    ; mine is 7, 101
+    ; mine is 6, 101
     global X_ := 1
     global Y_ := 1
     Loop, 600 {

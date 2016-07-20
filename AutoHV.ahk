@@ -696,7 +696,7 @@ main:
         if (0x120D5C = color)
             break
     }
-    MouseMove, X_ + 740, Y_ + 600
+    MouseMove, X_ + 100, Y_ + 600
 
     ; check battle mode
     SendInput, !d
